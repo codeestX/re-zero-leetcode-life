@@ -10,9 +10,13 @@ class Solution(object):
             for i in range(0, len(s) - length + 1):
                 temp = s[i:i + length]
                 if self.is_palindromic(temp) and len(temp) > len(result):
-                    result = temp
+                    return temp
             length -= 1
         return result
 
     def is_palindromic(self, s):
-        return s == s[::-1]
+        if len(s) == 0 or len(s) == 1:
+            return True
+        if s[:1] != s[-1:]:
+            return False
+        return self.is_palindromic(s[1:-1])
